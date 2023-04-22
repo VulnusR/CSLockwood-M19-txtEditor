@@ -20,7 +20,7 @@ module.exports = () => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/template.html',
+        template: './index.html',
       }),
 
       new InjectManifest({
@@ -29,7 +29,7 @@ module.exports = () => {
       }),
 
       new WebpackPwaManifest({
-        filename: 'manifest.json',
+        //filename: 'manifest.json',
         name: 'JATE',
         short_name: 'JATE',
         start_url: '/',
@@ -38,7 +38,7 @@ module.exports = () => {
         theme_color: '#1976d2',
         icons: [
           {
-            src: path.resolve('src/images/icon-512x512.png'),
+            src: path.resolve( __dirname, 'src/images/logo.png'),
             size: [72, 96, 128, 144, 152, 192, 384, 512],
           },
         ],
@@ -63,6 +63,11 @@ module.exports = () => {
           },
         },
       ],
+    },
+
+    resolve: {
+      extensions: ['.js', '.json'],
+      modules: [path.resolve(__dirname, 'client/src'), 'node_modules'],
     },
   };
 };

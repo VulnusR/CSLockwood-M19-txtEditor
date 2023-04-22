@@ -1,5 +1,5 @@
 {
-  "name": "JATE",
+  "name": "jate",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,7 +7,7 @@
     "start:dev": "nodemon server.js",
     "start": "node server.js",
     "server": "nodemon server.js --ignore client",
-    "build": "webpack --mode production",
+    "build": "cd client && npm run build",
     "install": "npm install",
     "client": "webpack-dev-server --mode development --open"
   },
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "webpack-cli": "^5.0.2"
   }
 }
