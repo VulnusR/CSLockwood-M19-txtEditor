@@ -17,13 +17,51 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './src/template.html',
+      }),
+
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'sw.js',
+      }),
+
+      new WebpackPwaManifest({
+        filename: 'manifest.json',
+        name: 'JATE',
+        short_name: 'JATE',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#212121',
+        theme_color: '#1976d2',
+        icons: [
+          {
+            src: path.resolve('src/images/icon-512x512.png'),
+            size: [72, 96, 128, 144, 152, 192, 384, 512],
+          },
+        ],
+      }),
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-transform-runtime'],
+            },
+          },
+        },
       ],
     },
   };
