@@ -29,20 +29,24 @@ module.exports = () => {
       }),
 
       new WebpackPwaManifest({
-        //filename: 'manifest.json',
-        name: 'JATE',
+        fingerprints: false,
+        inject: true,
+        name: 'Just Another Text Editor',
         short_name: 'JATE',
-        start_url: '/',
         display: 'standalone',
-        background_color: '#212121',
-        theme_color: '#1976d2',
+        background_color: '#442348',
+        theme_color: '#442348',
+        start_url: './',
+        publicPath: './',
         icons: [
-          {
-            src: path.resolve( __dirname, 'src/images/logo.png'),
-            size: [72, 96, 128, 144, 152, 192, 384, 512],
-          },
-        ],
-      }),
+					{
+						src: path.resolve('src/images/logo.png'),
+						sizes: [96, 128, 192, 256, 384, 512],
+						destination: path.join('assets', 'icons'),
+					},
+				],
+
+      })
     ],
 
     module: {
